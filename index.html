@@ -1,0 +1,114 @@
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PITs - Prospecção Consórcio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1f3c88;
+        }
+
+        .container {
+            max-width: 700px;
+            background: white;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+            color: #1f3c88;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #c4c4c4;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #1f3c88;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #15306b;
+        }
+
+        .resultado {
+            background: #eaf0ff;
+            border-left: 4px solid #1f3c88;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>PITs - Planejamento Diário</h1>
+
+<div class="container">
+
+    <label>✔ Atividades do dia:</label>
+    <textarea id="atividades" rows="4" placeholder="Exemplo: Enviar emails, ligar para leads, atualizar planilha..."></textarea>
+
+    <label>📅 Data:</label>
+    <input type="date" id="data">
+
+    <label>📊 Total de tarefas do dia:</label>
+    <input type="number" id="total">
+
+    <label>✅ Quantas foram concluídas:</label>
+    <input type="number" id="concluidas">
+
+    <button onclick="gerar()">Gerar PITs</button>
+
+    <div id="resultado" class="resultado"></div>
+
+</div>
+
+<script>
+function gerar() {
+    let atividades = document.getElementById('atividades').value;
+    let data = document.getElementById('data').value;
+    let total = document.getElementById('total').value;
+    let concluidas = document.getElementById('concluidas').value;
+
+    let texto = `
+        <strong>📅 Data:</strong> ${data} <br><br>
+        <strong>📝 Atividades do dia:</strong><br>${atividades.replace(/\n/g, "<br>")} <br><br>
+        <strong>📊 Total de tarefas:</strong> ${total}<br>
+        <strong>✅ Concluídas:</strong> ${concluidas}<br>
+        <strong>⚠ Pendentes:</strong> ${total - concluidas}
+    `;
+
+    let box = document.getElementById('resultado');
+    box.innerHTML = texto;
+    box.style.display = "block";
+}
+</script>
+
+</body>
+</html>
